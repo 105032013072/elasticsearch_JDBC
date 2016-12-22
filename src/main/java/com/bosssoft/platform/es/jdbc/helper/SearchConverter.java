@@ -88,7 +88,7 @@ public class SearchConverter {
             Expression exp =sc.getExpression();
             if(exp instanceof FunctionCall){
             	FunctionCall fc=(FunctionCall) exp;
-                columnMate.setAggType(AggType.valueOf(fc.getName().toString()));
+                columnMate.setAggType(AggType.valueOf(fc.getName().toString().toUpperCase()));
                 columnMate.setName(fc.getArguments().get(0).toString());;
             }else {
             	QualifiedNameReference qnf=(QualifiedNameReference) exp;
