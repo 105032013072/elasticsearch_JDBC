@@ -21,7 +21,10 @@ import java.sql.Statement;
 
 import com.bosssoft.platform.es.jdbc.driver.ESConnection;
 import com.bosssoft.platform.es.jdbc.helper.QueryBuilder;
+import com.bosssoft.platform.es.jdbc.helper.SearchConverter;
 import com.bosssoft.platform.es.jdbc.helper.UpdateBuilder;
+import com.bosssoft.platform.es.jdbc.model.SqlObj;
+import com.facebook.presto.sql.parser.SqlParser;
 
 /**
  * TODO 此处填写 class 信息
@@ -31,6 +34,9 @@ import com.bosssoft.platform.es.jdbc.helper.UpdateBuilder;
 
 public class ESStatement implements Statement{
   
+	private static final SqlParser sqlparser = new SqlParser();
+	
+	private static SearchConverter sconverter=new SearchConverter();
 	
 	private ESConnection connection;
 	
@@ -48,7 +54,12 @@ public class ESStatement implements Statement{
 	 */
 	@Override
 	public ResultSet executeQuery(String sql) throws SQLException {
+		sql=sql.trim().toLowerCase();
 		
+		//暂时去除分页的语句
+		String formatSql=hashLimit(sql);
+		com.facebook.presto.sql.tree.Statement statement = sqlparser.createStatement(formatSql);
+		SqlObj sqlObj=sconverter.convent(statement,sql);
 		return null;
 	}
 
@@ -61,9 +72,17 @@ public class ESStatement implements Statement{
 	@Override
 	public int executeUpdate(String sql) throws SQLException {
 		sql=sql.replace(" ", "");
+		String formatSql=hashLimit(sql);
 		return 0;
 	}
 
+	//sql语句的分页解析
+		private String  hashLimit (String sql) {
+			if(sql.contains("limit")){
+				sql=sql.substring(0, sql.indexOf("limit"));
+			}
+			return sql;
+		}
 	
 
 	public ESConnection getConnection() {
