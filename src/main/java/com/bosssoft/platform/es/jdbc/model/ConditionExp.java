@@ -51,6 +51,12 @@ public class ConditionExp {
 	public void setRelation(String relation) {
 		this.relation = relation;
 	}
+
+	@Override
+	public String toString() {
+		return "ConditionExp [expression=" + expression + ", next=" + next
+				+ ", relation=" + relation + "]";
+	}
 	
 	
 }

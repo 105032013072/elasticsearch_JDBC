@@ -55,7 +55,7 @@ public class MakeTest {
 		      	//ResultSet rs = st.executeQuery("SELECT * FROM uab_agen_item where tfname ='测试3' limit 2,3");
 			 
 			 Statement st = con.createStatement(); 	
-			 ResultSet rs = st.executeQuery("SELECT user_no,min(user_salary) as minsalary FROM user ");
+			 ResultSet rs = st.executeQuery("SELECT * FROM user where user_salary=2200 ");
 		      while(rs.next()){
 		       	System.out.println(rs.getInt("user_salary"));
 		       	System.out.println(rs.getString("user_no"));

@@ -34,11 +34,11 @@ public class SqlObj {
 	
 	private String from ;
 	
-	private List<ConditionExp> where;
+	private ConditionExp where;
 	
-	private List<ColumnMate> groupby;
+	private List<String> groupby;
 	
-	private List<ConditionExp> having;
+	private ConditionExp having;
 	
 	private List<OrderbyMate> orderby;
 	
@@ -68,28 +68,12 @@ public class SqlObj {
 		this.from = from;
 	}
 
-	public List<ConditionExp> getWhere() {
-		return where;
-	}
-
-	public void setWhere(List<ConditionExp> where) {
-		this.where = where;
-	}
-
-	public List<ColumnMate> getGroupby() {
+	public List<String> getGroupby() {
 		return groupby;
 	}
 
-	public void setGroupby(List<ColumnMate> groupby) {
+	public void setGroupby(List<String> groupby) {
 		this.groupby = groupby;
-	}
-
-	public List<ConditionExp> getHaving() {
-		return having;
-	}
-
-	public void setHaving(List<ConditionExp> having) {
-		this.having = having;
 	}
 
 	public List<OrderbyMate> getOrderby() {
@@ -106,6 +90,22 @@ public class SqlObj {
 
 	public void setLimit(PageMate limit) {
 		this.limit = limit;
+	}
+
+	public ConditionExp getWhere() {
+		return where;
+	}
+
+	public void setWhere(ConditionExp where) {
+		this.where = where;
+	}
+
+	public ConditionExp getHaving() {
+		return having;
+	}
+
+	public void setHaving(ConditionExp having) {
+		this.having = having;
 	}
 	
 	

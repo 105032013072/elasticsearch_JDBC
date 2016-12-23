@@ -21,8 +21,21 @@ package com.bosssoft.platform.es.jdbc.enumeration;
  */
 
 public enum OrderType {
-  ASC,
-  DESC
+	ASCENDING {
+        @Override
+        public String toString() {
+            return "asc";
+        }
+    },
+    /**
+     * Descending order.
+     */
+	DESCENDING{
+        @Override
+        public String toString() {
+            return "desc";
+        }
+    };
 }
 
 /*
